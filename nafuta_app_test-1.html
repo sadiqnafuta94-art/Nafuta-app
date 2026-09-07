@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nafuta — Sadiq Nafuta</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#111;color:#fff;font-family:Arial,sans-serif;display:flex;justify-content:center;min-height:100vh}
+.phone{width:min(100%,430px);min-height:100vh;background:#08090b;position:relative;overflow:hidden}
+header{height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;border-bottom:1px solid #222}
+.logo{font-size:24px;font-weight:800}.yellow{color:#ffe600}
+.screen{padding:18px 16px 92px;display:none}.screen.active{display:block}
+.card{background:#15171b;border:1px solid #272a30;border-radius:18px;padding:16px;margin-bottom:14px}
+.btn{border:0;border-radius:28px;padding:14px 22px;font-weight:800;font-size:15px;cursor:pointer}
+.primary{background:#ffe600;color:#111}.secondary{background:#202329;color:#fff}
+.camera{height:68vh;border-radius:26px;background:linear-gradient(160deg,#6aa9d8,#20242a 65%,#111);display:flex;align-items:center;justify-content:center;position:relative}
+.shutter{width:78px;height:78px;border:5px solid #fff;border-radius:50%;background:transparent;cursor:pointer}
+.camera .tip{position:absolute;top:18px;left:18px;background:#0008;padding:9px 12px;border-radius:15px}
+.stories{display:flex;gap:12px;overflow:auto;padding:8px 0 18px}.story{min-width:72px;text-align:center;font-size:12px}.avatar{width:62px;height:62px;border-radius:50%;border:3px solid #ffe600;margin:auto auto 6px;background:linear-gradient(135deg,#444,#999)}
+.chat{display:flex;align-items:center;gap:12px;padding:14px 4px;border-bottom:1px solid #222}.chat .avatar{width:48px;height:48px;margin:0}
+.bottom{position:fixed;bottom:0;width:min(100%,430px);height:74px;background:#111318eF;border-top:1px solid #292c32;display:flex;justify-content:space-around;align-items:center;z-index:5}
+.nav{background:none;border:0;color:#aaa;font-size:12px;cursor:pointer}.nav.active{color:#ffe600}.nav span{display:block;font-size:22px;margin-bottom:3px}
+.profile{text-align:center}.profile .avatar{width:92px;height:92px}.stat{display:flex;justify-content:space-around;margin:18px 0}.stat b{display:block;font-size:20px}
+input{width:100%;padding:14px;border-radius:12px;border:1px solid #333;background:#101216;color:#fff;margin:7px 0}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:88px;background:#ffe600;color:#111;padding:12px 18px;border-radius:20px;font-weight:700;display:none;z-index:10}
+</style>
+</head>
+<body>
+<div class="phone">
+<header><div class="logo"><span class="yellow">N</span>afuta</div><div>🔔</div></header>
+
+<section id="home" class="screen active">
+<h2>Good evening, Sadiq 👋</h2>
+<div class="card"><h3>Share your moment</h3><p style="color:#aaa">Take a photo or video and share it with your friends.</p><button class="btn primary" onclick="show('camera')">Open Camera</button></div>
+<h3>Stories</h3>
+<div class="stories">
+<div class="story"><div class="avatar"></div>My Story</div><div class="story"><div class="avatar"></div>Amaka</div><div class="story"><div class="avatar"></div>Michael</div><div class="story"><div class="avatar"></div>Blessing</div>
+</div>
+<div class="card"><b>Welcome to Nafuta</b><p style="color:#aaa">A social app by Sadiq Nafuta — capture, share and connect.</p></div>
+</section>
+
+<section id="camera" class="screen">
+<h2>Camera</h2>
+<div class="camera"><div class="tip">📸 Camera preview</div><button class="shutter" onclick="toast('Snap captured! 📸')"></button></div>
+</section>
+
+<section id="stories" class="screen">
+<h2>Stories</h2><div class="stories">
+<div class="story"><div class="avatar"></div>My Story</div><div class="story"><div class="avatar"></div>Amaka</div><div class="story"><div class="avatar"></div>Michael</div><div class="story"><div class="avatar"></div>Blessing</div>
+</div>
+<div class="card"><h3>Amaka's Story</h3><p>✨ Good vibes only</p><button class="btn secondary" onclick="toast('Story opened')">View Story</button></div>
+<div class="card"><h3>Michael's Story</h3><p>📍 Weekend moments</p><button class="btn secondary" onclick="toast('Story opened')">View Story</button></div>
+</section>
+
+<section id="chat" class="screen">
+<h2>Chats</h2><input placeholder="Search friends or messages">
+<div class="chat"><div class="avatar"></div><div><b>Amaka</b><div style="color:#aaa">Hey! How are you? 😊</div></div></div>
+<div class="chat"><div class="avatar"></div><div><b>Michael</b><div style="color:#aaa">Send a snap</div></div></div>
+<div class="chat"><div class="avatar"></div><div><b>Blessing</b><div style="color:#aaa">Voice message 🎤</div></div></div>
+<div class="chat"><div class="avatar"></div><div><b>Tunde</b><div style="color:#aaa">Let's meet tomorrow</div></div></div>
+</section>
+
+<section id="profile" class="screen profile">
+<div class="avatar"></div><h2>Sadiq Nafuta ⭐</h2><p style="color:#aaa">@sadiq_nafuta</p>
+<div class="stat"><div><b>245</b>Friends</div><div><b>1.2K</b>Followers</div><div><b>3.4K</b>Snaps</div></div>
+<div class="card" style="text-align:left"><b>About</b><p>IT Student • Entrepreneur • Future CEO 🚀</p></div>
+<button class="btn primary" onclick="toast('Edit profile coming next')">Edit Profile</button>
+</section>
+
+<div class="bottom">
+<button class="nav active" data-s="home" onclick="show('home')"><span>⌂</span>Home</button>
+<button class="nav" data-s="chat" onclick="show('chat')"><span>💬</span>Chat</button>
+<button class="nav" data-s="camera" onclick="show('camera')"><span>📷</span>Camera</button>
+<button class="nav" data-s="stories" onclick="show('stories')"><span>▶</span>Stories</button>
+<button class="nav" data-s="profile" onclick="show('profile')"><span>◉</span>Profile</button>
+</div>
+<div id="toast" class="toast"></div>
+</div>
+<script>
+function show(id){
+ document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('.nav').forEach(x=>x.classList.toggle('active',x.dataset.s===id));
+}
+function toast(msg){
+ const t=document.getElementById('toast'); t.textContent=msg; t.style.display='block';
+ setTimeout(()=>t.style.display='none',1800);
+}
+</script>
+</body>
+</html>
