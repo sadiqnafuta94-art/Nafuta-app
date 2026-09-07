@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Nafuta — iOS-inspired</title>
+<style>
+:root{--bg:#f2f2f7;--card:#fff9;--text:#111;--muted:#707070;--accent:#ffe000;--glass:#ffffffb8}
+*{box-sizing:border-box}body{margin:0;background:#dfe1e8;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif;color:var(--text)}
+.phone{width:min(100%,430px);min-height:100vh;margin:auto;background:linear-gradient(180deg,#f8f8fb,#ececf1);position:relative;overflow:hidden;padding-bottom:92px}
+.status{height:30px;padding:8px 20px 0;font-size:12px;font-weight:700;display:flex;justify-content:space-between}
+header{height:62px;padding:0 18px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:27px;font-weight:800;letter-spacing:-1px}.logo i{color:#d2ba00;font-style:normal}
+.icon{width:38px;height:38px;border:0;border-radius:50%;background:var(--glass);backdrop-filter:blur(20px);font-size:18px;box-shadow:0 2px 12px #0001}
+.screen{display:none;padding:8px 17px 25px}.screen.active{display:block}
+h1,h2,h3,p{margin-top:0}h2{font-size:30px;letter-spacing:-1px;margin-bottom:16px}h3{margin-bottom:7px}
+.glass{background:var(--glass);border:1px solid #fff;backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);border-radius:25px;box-shadow:0 8px 30px #00000010;padding:18px;margin-bottom:14px}
+.hero{background:linear-gradient(135deg,#fff8b5,#fff,#f7f7fb);min-height:190px;display:flex;flex-direction:column;justify-content:center}
+.btn{border:0;border-radius:18px;padding:14px 20px;font-size:15px;font-weight:750;cursor:pointer}.primary{background:#111;color:#fff}.yellow{background:var(--accent);color:#111}
+.stories{display:flex;gap:14px;overflow:auto;padding:3px 1px 18px}.story{min-width:68px;text-align:center;font-size:12px;font-weight:600}.avatar{width:62px;height:62px;border-radius:50%;padding:3px;background:linear-gradient(135deg,#ffe000,#111);margin:auto auto 6px}.avatar:after{content:"";display:block;width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#8bb3d9,#d6a78b)}
+.camera{height:68vh;border-radius:32px;background:linear-gradient(160deg,#86b9e5,#525962 55%,#15171b);position:relative;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;padding-bottom:35px;box-shadow:0 12px 35px #0003}
+.camera:before{content:"LIVE CAMERA";position:absolute;top:18px;left:18px;background:#0007;color:white;padding:8px 11px;border-radius:14px;font-size:11px;letter-spacing:.5px}
+.shutter{width:82px;height:82px;border:5px solid #fff;border-radius:50%;background:#ffffff33;box-shadow:0 4px 15px #0005}
+.controls{position:absolute;top:18px;right:15px;display:flex;flex-direction:column;gap:10px}.controls button{width:40px;height:40px;border:0;border-radius:50%;background:#0006;color:white;font-size:17px}
+.chat{display:flex;align-items:center;gap:12px;padding:13px 4px;border-bottom:1px solid #0001}.chat .avatar{width:48px;height:48px;margin:0}.chat small{color:var(--muted)}
+.profile{text-align:center}.profile .avatar{width:96px;height:96px}.stats{display:flex;justify-content:space-around;margin:18px 0}.stats b{display:block;font-size:21px}.settings{text-align:left}.row{display:flex;justify-content:space-between;align-items:center;padding:15px 3px;border-bottom:1px solid #0001}.row:last-child{border:0}.switch{width:48px;height:29px;background:#ccc;border-radius:20px;padding:3px}.switch:after{content:"";display:block;width:23px;height:23px;background:white;border-radius:50%;box-shadow:0 1px 4px #0003}
+.bottom{position:fixed;bottom:0;width:min(100%,430px);height:82px;padding:8px 8px max(8px,env(safe-area-inset-bottom));background:#f8f8f8cc;backdrop-filter:blur(28px);border-top:1px solid #fff;display:flex;justify-content:space-around;z-index:5}
+.nav{border:0;background:transparent;color:#777;font-size:10px;font-weight:650;cursor:pointer}.nav span{display:block;font-size:22px;margin-bottom:3px}.nav.active{color:#111}.nav.camera{background:#111;color:#fff;width:55px;height:55px;border-radius:50%;padding:0}
+.toast{position:fixed;bottom:98px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:12px 17px;border-radius:22px;font-weight:700;display:none;z-index:10;white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="phone">
+<div class="status"><span>9:41</span><span>● ● ▰</span></div>
+<header><div class="logo">Nafuta<i>.</i></div><button class="icon" onclick="toast('Notifications')">🔔</button></header>
+
+<section id="home" class="screen active">
+<h2>Good evening, Sadiq</h2>
+<div class="glass hero"><h3>Capture your moment.</h3><p style="color:var(--muted)">Share photos, videos and memories with your friends.</p><button class="btn yellow" onclick="show('camera')">Open Camera</button></div>
+<h3>Stories</h3><div class="stories"><div class="story"><div class="avatar"></div>My Story</div><div class="story"><div class="avatar"></div>Amaka</div><div class="story"><div class="avatar"></div>Michael</div><div class="story"><div class="avatar"></div>Blessing</div></div>
+<div class="glass"><b>✨ Your Nafuta space</b><p style="color:var(--muted);margin:7px 0 0">A clean, glassy iOS-inspired social experience.</p></div>
+</section>
+
+<section id="camera" class="screen"><h2>Camera</h2><div class="camera"><div class="controls"><button>⚡</button><button>🔄</button><button>🎵</button><button>✨</button></div><button class="shutter" onclick="toast('Snap captured 📸')"></button></div></section>
+
+<section id="stories" class="screen"><h2>Stories</h2><div class="stories"><div class="story"><div class="avatar"></div>My Story</div><div class="story"><div class="avatar"></div>Amaka</div><div class="story"><div class="avatar"></div>Michael</div><div class="story"><div class="avatar"></div>Blessing</div></div><div class="glass"><h3>Amaka's Story</h3><p style="color:var(--muted)">✨ Good vibes only</p><button class="btn primary" onclick="toast('Story opened')">View Story</button></div></section>
+
+<section id="chat" class="screen"><h2>Messages</h2><div class="glass"><input style="width:100%;border:0;outline:0;background:transparent;font-size:16px" placeholder="🔍 Search"></div>
+<div class="chat"><div class="avatar"></div><div><b>Amaka</b><small>Hey! How are you? 😊</small></div></div><div class="chat"><div class="avatar"></div><div><b>Michael</b><small>Send a snap</small></div></div><div class="chat"><div class="avatar"></div><div><b>Blessing</b><small>Voice message 🎤</small></div></div></section>
+
+<section id="profile" class="screen profile"><div class="avatar"></div><h2>Sadiq Nafuta ⭐</h2><p style="color:var(--muted)">@sadiq_nafuta</p><div class="stats"><div><b>245</b>Friends</div><div><b>1.2K</b>Followers</div><div><b>3.4K</b>Snaps</div></div><div class="glass" style="text-align:left"><b>About</b><p style="color:var(--muted)">IT Student • Entrepreneur • Future CEO 🚀</p></div><button class="btn primary" onclick="toast('Edit profile')">Edit Profile</button></section>
+
+<section id="settings" class="screen settings"><h2>Settings</h2><div class="glass"><div class="row">Notifications <div class="switch"></div></div><div class="row">Dark Mode <div class="switch"></div></div><div class="row">Private Account <div class="switch"></div></div><div class="row">Location Sharing <span>›</span></div><div class="row">Privacy & Security <span>›</span></div></div></section>
+
+<div class="bottom">
+<button class="nav active" data-s="home" onclick="show('home')"><span>⌂</span>Home</button>
+<button class="nav" data-s="chat" onclick="show('chat')"><span>💬</span>Chat</button>
+<button class="nav camera" data-s="camera" onclick="show('camera')"><span>📷</span></button>
+<button class="nav" data-s="stories" onclick="show('stories')"><span>◉</span>Stories</button>
+<button class="nav" data-s="profile" onclick="show('profile')"><span>●</span>Profile</button>
+</div><div id="toast" class="toast"></div>
+<script>
+function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav').forEach(x=>x.classList.toggle('active',x.dataset.s===id))}
+function toast(m){let t=document.getElementById('toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',1600)}
+</script>
+</div></body></html>
